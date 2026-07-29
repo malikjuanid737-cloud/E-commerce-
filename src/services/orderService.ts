@@ -32,15 +32,20 @@ export const createOrder = async (
   const colRef = collection(db, ORDERS_COLLECTION);
   const now = new Date().toISOString();
   
-  // Format items
-  const orderItems = items.map((item) => ({
-    productId: item.productId,
-    name: item.name,
-    price: item.price,
-    quantity: item.quantity,
-    variant: item.variant || undefined,
-    imageUrl: item.imageUrl
-  }));
+  // Format items without undefined fields for Firestore compatibility
+  const orderItems = items.map((item) => {
+    const itemObj: any = {
+      productId: item.productId,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      imageUrl: item.imageUrl
+    };
+    if (item.variant) {
+      itemObj.variant = item.variant;
+    }
+    return itemObj;
+  });
 
   // Generate tracking number
   const trackingNumber = `TRK-${Math.floor(100000 + Math.random() * 900000)}`;
