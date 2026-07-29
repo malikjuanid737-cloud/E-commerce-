@@ -1,0 +1,6 @@
+{
+  "name": "E-Commerce Online Store",
+  "description": "Glassmorphic E-Commerce storefront with product catalog, cart, checkout, order history & tracking, admin dashboard, and Firebase Auth & Firestore data persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

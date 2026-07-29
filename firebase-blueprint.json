@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "products": {
+      "title": "Products",
+      "description": "Catalog of store items for sale",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "currency": { "type": "string", "default": "USD" },
+        "category": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "variants": { "type": "array", "items": { "type": "object" } },
+        "stockQuantity": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "price", "category"]
+    },
+    "users": {
+      "title": "Users",
+      "description": "Registered customer profiles and admin accounts",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "shippingAddresses": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "orders": {
+      "title": "Orders",
+      "description": "Customer purchase orders",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending_payment", "paid", "processing", "shipped", "delivered", "cancelled"] },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "shippingCost": { "type": "number" },
+        "total": { "type": "number" },
+        "shippingAddress": { "type": "object" },
+        "paymentStatus": { "type": "string", "enum": ["unpaid", "paid", "refunded"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "items", "total", "status"]
+    }
+  }
+}
